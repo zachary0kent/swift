@@ -1578,6 +1578,10 @@ CompilerInstance::getSourceFileParsingOptions(bool forPrimary) const {
       frontendOpts.ReuseFrontendForMultipleCompilations) {
     opts |= ParsingFlags::EnableInterfaceHash;
   }
+  if (action == ActionType::Immediate) {
+    opts -= ParsingFlags::DisableDelayedBodies;
+    opts -= ParsingFlags::ValidateNewParserDiagnostics;
+  }
   return opts;
 }
 
